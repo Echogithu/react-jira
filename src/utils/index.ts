@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export const ifFalsy = (value: any) => (value === 0 ? false : !value); //!!value转成boolean值
+export const ifFalsy = (value: unknown) => (value === 0 ? false : !value); //!!value转成boolean值
 
 // 注意不要污染传入对象
 export const cleanObject = (object: object) => {
@@ -22,7 +22,7 @@ export const useMount = (callback: () => void) => {
   }, []);
 };
 
-export const useDebounce = (value: any, delay?: number) => {
+export const useDebounce = <V>(value: V, delay?: number) => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 
   useEffect(() => {

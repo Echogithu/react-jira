@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { cleanObject, useDebounce, useMount } from "utils";
 import * as qs from "qs";
 
+// 使用JS，大部分错误是在runtime(运行时)的时候发现的
+// 我们希望在静态代码中，就能找到其中一些错误 -> 强类型
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export const ProjectListScreen = () => {
