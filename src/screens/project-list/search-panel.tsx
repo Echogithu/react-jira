@@ -6,6 +6,7 @@ export interface IUser {
   email: string;
   personId: string;
   organization: string;
+  token: string;
 }
 
 interface ISearchPanelProps {
