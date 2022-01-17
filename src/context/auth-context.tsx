@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import * as auth from "auth-provider";
 import { IUser } from "screens/project-list/search-panel";
 
@@ -19,7 +19,7 @@ const AuthContext = React.createContext<
 
 AuthContext.displayName = "AuthContext";
 
-export const AuthProvider = () => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<IUser | null>(null);
 
   // point free
@@ -28,7 +28,12 @@ export const AuthProvider = () => {
   const register = (form: IAuthForm) => auth.register(form).then(setUser);
   const logout = () => auth.logout().then(() => setUser(null));
 
-  return <AuthContext.Provider value={{ user, login, register, logout }} />;
+  return (
+    <AuthContext.Provider
+      value={{ user, login, register, logout }}
+      children={children}
+    />
+  );
 };
 
 export const useAuth = () => {
