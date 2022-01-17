@@ -3,6 +3,7 @@ import { SearchPanel } from "./search-panel";
 import React, { useState, useEffect } from "react";
 import { cleanObject, useDebounce, useMount } from "utils";
 import * as qs from "qs";
+import { useHttp } from "utils/http";
 
 // 使用JS，大部分错误是在runtime(运行时)的时候发现的
 // 我们希望在静态代码中，就能找到其中一些错误 -> 强类型
@@ -16,23 +17,14 @@ export const ProjectListScreen = () => {
   const debouncedParam = useDebounce(param, 200);
   const [users, setUsers] = useState([]);
   const [list, setList] = useState([]);
+  const client = useHttp();
 
   useEffect(() => {
-    fetch(
-      `${apiUrl}/projects?${qs.stringify(cleanObject(debouncedParam))}`
-    ).then(async (response) => {
-      if (response.ok) {
-        setList(await response.json());
-      }
-    });
+    client("projects", { data: cleanObject(debouncedParam) }).then(setList);
   }, [debouncedParam]);
 
   useMount(() => {
-    fetch(`${apiUrl}/users`).then(async (response) => {
-      if (response.ok) {
-        setUsers(await response.json());
-      }
-    });
+    client("users").then(setUsers);
   });
 
   return (
