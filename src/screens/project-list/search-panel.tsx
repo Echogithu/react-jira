@@ -1,5 +1,4 @@
-import { Input, Select } from "antd";
-import Form from "antd/lib/form/Form";
+import { Form, Input, Select } from "antd";
 
 export interface IUser {
   id: string;
@@ -21,8 +20,8 @@ interface ISearchPanelProps {
 
 export const SearchPanel = ({ users, param, setParam }: ISearchPanelProps) => {
   return (
-    <Form>
-      <div>
+    <Form style={{ marginBottom: "2rem" }} layout={"inline"}>
+      <Form.Item>
         {/* setParam(Object.assign({}, param,{name:evt.target.value})) */}
         <Input
           type="text"
@@ -34,6 +33,8 @@ export const SearchPanel = ({ users, param, setParam }: ISearchPanelProps) => {
             })
           }
         />
+      </Form.Item>
+      <Form.Item>
         <Select
           value={param.personId}
           onChange={(value) =>
@@ -50,7 +51,7 @@ export const SearchPanel = ({ users, param, setParam }: ISearchPanelProps) => {
             </Select.Option>
           ))}
         </Select>
-      </div>
+      </Form.Item>
     </Form>
   );
 };
