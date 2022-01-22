@@ -7,3 +7,14 @@
    从布局出发：先规划网格（数量一般比较固定），然后再把元素往里面填充
    从内容出发，用 flex
    从布局出发，用 grid
+
+### [ts] object
+
+let a: object
+a = {name:'jack}
+a=() => {}
+a = new RegExp('')
+
+let b: { [key: string]: unknown };
+b = { name: "Jack" };
+b = () => {};
