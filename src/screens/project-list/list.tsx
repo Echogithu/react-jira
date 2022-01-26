@@ -1,8 +1,8 @@
-import { Table } from "antd";
+import { Table, TableProps } from "antd";
 import dayjs from "dayjs";
 import { IUser } from "./search-panel";
 
-interface IProject {
+export interface IProject {
   id: string;
   name: string;
   personId: string;
@@ -11,12 +11,11 @@ interface IProject {
   created: number;
 }
 
-interface IListProps {
-  list: IProject[];
+interface IListProps extends TableProps<IProject> {
   users: IUser[];
 }
 
-export const List = ({ users, list }: IListProps) => {
+export const List = ({ users, ...props }: IListProps) => {
   return (
     <Table
       pagination={false}
@@ -54,7 +53,7 @@ export const List = ({ users, list }: IListProps) => {
           },
         },
       ]}
-      dataSource={list}
+      {...props}
     />
   );
 };
