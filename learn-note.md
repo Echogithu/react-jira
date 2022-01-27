@@ -27,6 +27,10 @@ b = () => {};
 
 ### 方案二： 使用 useDocumentTitle
 
+## react hook 与闭包，容易踩坑地方
+
+第 8-2 节
+
 ## 先跳过或者暂不理解地方
 
 ### 7-5 实现 Error Boundaries
