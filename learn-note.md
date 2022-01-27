@@ -8,8 +8,9 @@
    从内容出发，用 flex
    从布局出发，用 grid
 
-### [ts] object
+## TS object
 
+```
 let a: object
 a = {name:'jack}
 a=() => {}
@@ -18,3 +19,14 @@ a = new RegExp('')
 let b: { [key: string]: unknown };
 b = { name: "Jack" };
 b = () => {};
+```
+
+## 修改网页标题
+
+### 方案一： react-helmet
+
+### 方案二： 使用 useDocumentTitle
+
+## 先跳过或者暂不理解地方
+
+### 7-5 实现 Error Boundaries
