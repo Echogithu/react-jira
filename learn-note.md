@@ -31,6 +31,10 @@ b = () => {};
 
 第 8-2 节
 
+## react-router 和 react-router-dom 的关系
+
+react-router 和 react-router-dom 的关系类似于 react 和 react-dom/react-native 的关系
+
 ## 先跳过或者暂不理解地方
 
 ### 7-5 实现 Error Boundaries
