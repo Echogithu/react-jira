@@ -35,6 +35,61 @@ b = () => {};
 
 react-router 和 react-router-dom 的关系类似于 react 和 react-dom/react-native 的关系
 
+## useMemo 和 useEffect 容易踩坑地方
+
+基本类型可以放到依赖里
+组件状态可以放到依赖里
+非组件状态的对象不可以放到依赖里
+
+```
+const [obj, setObj] = useState({}) // 组件状态
+useEffect(
+   () => console.log(obj),
+   [obj]
+)
+
+const obj1 = {} // 组件状态
+useMemo(
+   () => console.log(obj),
+   [obj1] // 错误，会死循环，因为每次都是不同对象
+)
+```
+
+例子：
+8-6 节
+
+## iterator
+
+https://codesandbox.io/s/upbeat-wood-bum3j?file=/src/index.js
+
+```
+import "./styles.css";
+
+const obj = {
+  data: ["hello", "world"],
+  [Symbol.iterator]() {
+    const self = this;
+    let index = 0;
+    return {
+      next() {
+        if (index < self.data.length) {
+          return {
+            value: self.data[index++] + "!",
+            done: false
+          };
+        } else {
+          return { value: undefined, done: true };
+        }
+      }
+    };
+  }
+};
+
+for (let o of obj) {
+  console.log(o);
+}
+```
+
 ## 先跳过或者暂不理解地方
 
 ### 7-5 实现 Error Boundaries
